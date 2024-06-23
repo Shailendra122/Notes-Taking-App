@@ -1,0 +1,31 @@
+/* write your css here */
+
+/* styles.css */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .text-3xl {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .notes-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .note-form {
+    margin-top: 2rem;
+  }
+  
+  .note {
+    background-color: #f9f9f9;
+  }
+  
+  input {
+    margin-bottom: 1rem;
+  }
+  
