@@ -25,13 +25,14 @@ const NoteForm = ({ onSubmit }) => {
         className="w-full p-3 text-lg border rounded mb-4 shadow-md focus:ring-2 focus:ring-blue-500"
         placeholder="Enter tags, separated by commas"
         value={tags}
+        required
         onChange={(event) => setTags(event.target.value)}
       />
       <button
         type="submit"
         className="w-[120px] ml-[220px] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md"
       >
-        Add Note
+        Add Notes
       </button>
     </form>
   );
