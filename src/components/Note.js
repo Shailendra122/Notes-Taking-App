@@ -1,93 +1,3 @@
-/*
-import React, { useState } from 'react';
-import { PencilIcon, TrashIcon, CheckIcon, XMarkIcon, ClockIcon } from '@heroicons/react/24/solid';
-
-const Note = ({ note, onDelete, onEdit }) => {
-  const [editMode, setEditMode] = useState(false);
-  const [newText, setNewText] = useState(note.text);
-
-  const handleEditClick = () => {
-    setEditMode(true);
-  };
-
-  const handleCancelEdit = () => {
-    setEditMode(false);
-    setNewText(note.text);
-  };
-
-  const handleUpdateNote = () => {
-    onEdit(note.id, newText);
-    setEditMode(false);
-  };
-
-  // Function to format the date
-  const formatDate = (date) => {
-    return new Date(date).toLocaleString();
-  };
-
-  return (
-    <div className="p-4 border rounded shadow-md bg-white relative mb-4">
-      {!editMode ? (
-        <div>
-          <h2 className="text-lg font-medium text-gray-800">{note.text}</h2>
-          <div className="flex flex-wrap mt-2">
-            {note.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="bg-gray-200 text-gray-600 rounded-full px-2 py-1 text-sm mr-2 mb-2"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="flex items-center mt-2 text-sm text-gray-500">
-            <ClockIcon className="h-4 w-4 mr-1" />
-            {formatDate(note.createdAt)}
-          </div>
-          <div className="absolute top-0 right-0 m-2 p-1 text-gray-500 hover:text-gray-700 flex">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 flex items-center" onClick={handleEditClick}>
-              <PencilIcon className="h-5 w-3 mr-2" />
-              Edit
-            </button>
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded flex items-center" onClick={() => onDelete(note.id)}>
-              <TrashIcon className="h-5 w-5 mr-2" />
-              Delete
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <input
-            type="text"
-            className="w-full p-2 border rounded focus:outline-none"
-            value={newText}
-            onChange={(e) => setNewText(e.target.value)}
-          />
-          <div className="absolute top-0 right-0 mt-4 mr-2 flex">
-            <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 flex items-center"
-              onClick={handleUpdateNote}
-            >
-              <CheckIcon className="h-5 w-5 mr-2" />
-              Save
-            </button>
-            <button
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded flex items-center"
-              onClick={handleCancelEdit}
-            >
-              <XMarkIcon className="h-5 w-5 mr-2" />
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Note;
-*/
-
 import React, { useState } from 'react';
 import { PencilIcon, TrashIcon, CheckIcon, XMarkIcon, ClockIcon } from '@heroicons/react/24/solid';
 
@@ -95,6 +5,7 @@ const Note = ({ note, onDelete, onEdit, darkMode }) => {
   const [editMode, setEditMode] = useState(false);
   const [newText, setNewText] = useState(note.text);
   const [isImageZoomed, setIsImageZoomed] = useState(false);
+  console.log(note);
 
   const handleEditClick = () => {
     setEditMode(true);

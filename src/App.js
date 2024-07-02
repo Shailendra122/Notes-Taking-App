@@ -1,37 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import NoteList from './components/NoteList';
 import NoteForm from './components/NoteForm';
 import Header from './components/Header';
+import { addNote, deleteNote, editNote, setNotes } from './redux/notesSlice';
+import { addCategory, setSearchQuery } from './redux/settingsSlice';
 import './App.css';
+import { nanoid } from '@reduxjs/toolkit';
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
-  const [categories, setCategories] = useState(['Work', 'Personal', 'Ideas']);
-  const [darkMode, setDarkMode] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const notes = useSelector((state) => state.notes);
+  const categories = useSelector((state) => state.settings.categories);
+  const darkMode = useSelector((state) => state.settings.darkMode);
+  const searchQuery = useSelector((state) => state.settings.searchQuery);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedNotes = JSON.parse(localStorage.getItem('notes'));
+    if (storedNotes) {
+      dispatch(setNotes(storedNotes));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
 
   const handleAddNote = (newNote) => {
     const noteWithTimestamp = {
       ...newNote,
-      id: Date.now(),
+      id: nanoid(),
       createdAt: new Date().toISOString(),
-      title: newNote.text.split(' ').slice(0, 5).join(' ') + '...'
+      title: newNote.text.split(' ').slice(0, 5).join(' ') + '...',
     };
-    setNotes([...notes, noteWithTimestamp]);
+    dispatch(addNote(noteWithTimestamp));
   };
 
   const handleDeleteNote = (id) => {
-    setNotes(notes.filter((note) => note.id !== id));
+    dispatch(deleteNote(id));
   };
 
   const handleEditNote = (id, updatedNote) => {
-    setNotes(notes.map((note) =>
-      note.id === id ? { ...note, ...updatedNote, title: updatedNote.text.split(' ').slice(0, 5).join(' ') + '...' } : note
-    ));
+    dispatch(editNote({
+      id,
+      updatedNote,
+    }));
   };
 
   const handleSearch = (query) => {
-    setSearchQuery(query.toLowerCase());
+    dispatch(setSearchQuery(query));
   };
 
   const filteredNotes = notes.filter((note) =>
@@ -40,11 +57,11 @@ const App = () => {
   );
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    dispatch(toggleDarkMode());
   };
 
   const handleAddCategory = (newCategory) => {
-    setCategories([...categories, newCategory]);
+    dispatch(addCategory(newCategory));
   };
 
   return (
