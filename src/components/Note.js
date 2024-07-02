@@ -5,7 +5,7 @@ const Note = ({ note, onDelete, onEdit, darkMode }) => {
   const [editMode, setEditMode] = useState(false);
   const [newText, setNewText] = useState(note.text);
   const [isImageZoomed, setIsImageZoomed] = useState(false);
-  console.log(note);
+  
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -43,7 +43,7 @@ const Note = ({ note, onDelete, onEdit, darkMode }) => {
   };
 
   return (
-    <div className={`p-4 border rounded shadow-md ${darkMode ? 'bg-gray-700 text-white' : 'bg-white'} relative mb-4`}>
+    <div className={`p-4 border rounded shadow-md transition duration-300 ease-in-out transform hover:scale-105 ${darkMode ? 'bg-gray-700 text-white' : 'bg-white'} relative mb-4`}>
       {!editMode ? (
         <div>
           <h2 className={`text-lg font-medium ${darkMode ? 'text-white' : 'text-gray-800'}`}>{note.title}</h2>
