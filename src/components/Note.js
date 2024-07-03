@@ -83,7 +83,7 @@ const Note = ({ note, onDelete, onEdit, darkMode }) => {
               <PencilIcon className="h-5 w-3 mr-2" />
               Edit
             </button>
-            <button className={`${darkMode ? 'bg-white hover:bg-gray-700' : 'bg-gray-300 hover:bg-gray-400'} text-gray-800 font-bold py-2 px-4 rounded flex items-center mr-2`} onClick={() => onDelete(note.id)}>
+            <button className={`${darkMode ? 'bg-white hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400'} text-gray-800 font-bold py-2 px-4 rounded flex items-center mr-2`} onClick={() => onDelete(note.id)}>
               <TrashIcon className="h-5 w-5 mr-2" />
               Delete
             </button>
